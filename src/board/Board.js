@@ -1,46 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import List from './list';
+import { Link, json } from 'react-router-dom';
 import React, { useState } from 'react';
 
-
 function Board(){
-
-    const [noticeNum, setNoticeNum] = useState("");
-    const [noticeWriter, setNoticeWriter] = useState("");
-    const [noticeHead, setNticeHead,] = useState("");
     
+  
+    const [BoardList, setBoardList] = useState([]);
+    const [page,setPage] = useState(0);
 
-    
-    fetch('http://192.168.7.182/notice/list',{
+    function next (){
+        setPage(page-1);
+     
+    }
+    function before(){
+        setPage(page+1);
+      
+    }
+
+    fetch(`http://192.168.7.161/notice/list/${page}`,{
     }).then(r=>r.json())
     .then(r=>{
-        console.log(r);
-        
+
+        console.log(r.list);
+        setBoardList(r.list);
     })
-    for(const [key, value] in Object.entries(Item)) {
-        console.log(`${key}  ${value.noticeNum}`)
-        console.log(`${key}  ${value.noticeWriter}`)
-        console.log(`${key}  ${value.noticeHead}`)
-    }
-    Object.entries(Item).map(drink => {
-        return (
-            
-            <div>
-            <h1> React Board List </h1>
-            <div>메뉴명: {drink[0].noticeNum}</div>
-            <div>메뉴명: {drink[0].noticeWriter}</div>
-            <div>메뉴명: {drink[0].noticeHead}</div>
-        </div>)
-
-}
-);
-
     
+        return (
+            <>
+            {BoardList && (
+            <table>
+            <thead>
+                <tr>
+                    <th>Num</th>
+                    <th>Title</th>
+                    <th>Writer</th>
+                    <th>Date</th>
+                    <th>Num</th>
+                </tr>
+                </thead>
+                <tbody>
 
 
+                {
+                    BoardList.map((ele,idx)=>(
+                        <tr key={idx}>
+                            <td>{ele.noticeNum}</td>
+                            <td>{ele.noticeWriter}</td>
+                            <td>{ele.noticeHead}</td>
+                            <td>{ele.noticeDate}</td>
+                            <td>{ele.noticeViews}</td>
+                        </tr>
+                    ))
+                }
 
-
+                </tbody>
+            </table>
+       
+            )}
+            <button onClick={before}>이전</button>
+            <button onClick={next}>다음</button>
+            </>
+        )
 }
 
 
