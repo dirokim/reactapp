@@ -16,13 +16,13 @@ function Board(){
       
     }
 
-    fetch(`http://192.168.7.161/notice/list/${page}`,{
-    }).then(r=>r.json())
-    .then(r=>{
+    // fetch(`http://192.168.7.161/notice/list/${page}`,{
+    // }).then(r=>r.json())
+    // .then(r=>{
 
-        console.log(r.list);
-        setBoardList(r.list);
-    })
+    //     console.log(r.list);
+    //     setBoardList(r.list);
+    // })
     
         return (
             <>
@@ -40,7 +40,7 @@ function Board(){
                 <tbody>
 
 
-                {
+                {/* {
                     BoardList.map((ele,idx)=>(
                         <tr key={idx}>
                             <td>{ele.noticeNum}</td>
@@ -50,7 +50,7 @@ function Board(){
                             <td>{ele.noticeViews}</td>
                         </tr>
                     ))
-                }
+                } */}
 
                 </tbody>
             </table>
