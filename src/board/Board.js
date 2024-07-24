@@ -1,6 +1,6 @@
 import { Link, json } from 'react-router-dom';
 import React, { useState } from 'react';
-
+import someone from '../test/someone'
 function Board(){
     
   
