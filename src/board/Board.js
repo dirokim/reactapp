@@ -1,9 +1,12 @@
 import { Link, json } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import someone from '../test/someone'
 function Board(){
     
-  
+    useEffect(()=>{
+
+    },page);
+
     const [BoardList, setBoardList] = useState([]);
     const [page,setPage] = useState(0);
 
